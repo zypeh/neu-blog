@@ -18,5 +18,5 @@ module.exports = withMDX({
     }
   },
   pageExtensions: ['js', 'jsx', 'mdx'],
-  assetPrefix: !debug ? '/site' : '',
+  assetPrefix: !debug ? '/neu-blog' : '',
 })
