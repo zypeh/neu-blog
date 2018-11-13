@@ -20,6 +20,7 @@
     "next": "latest",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
+    "react-helmet": "^5.2.0",
     "remark-emoji": "^2.0.2",
     "remark-images": "^0.16.0"
   },
