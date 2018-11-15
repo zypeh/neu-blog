@@ -10,8 +10,7 @@
   "scripts": {
     "watch": "gulp watch",
     "build": "gulp build",
-    "start": "NODE_ENV=production node server.js",
-    "deploy": "touch out/.nojekyll && git add out/ && git commit -m \"Deploy to branch gh-pages\" && git subtree push --prefix out origin gh-pages"
+    "deploy": "yarn build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy to branch gh-pages\" && git subtree push --prefix out origin gh-pages"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
