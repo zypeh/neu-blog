@@ -1,0 +1,105 @@
+@import "_partial/base.scss";
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:600');
+@import url('https://fonts.googleapis.com/css?family=Anton');
+
+body {
+    color:#3c4042;
+}
+
+h1 {
+    font-size: 1.8em;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2em;
+    width: 12em;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    strong {
+        margin-left: 1em;
+        opacity: 0;
+    }
+
+    a {
+        transition: opacity 300ms ease-in-out, color 300ms ease-in-out;
+        color: #8B8C89;
+        &:hover {
+            color: #3c4042;
+            strong {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+a {
+    overflow: hidden;
+    outline: none;
+    text-decoration: none;
+
+    color: #FF9505;
+    &:hover {
+        color: #EC4E20;
+    }
+}
+
+header {
+    max-width: 600px;
+    margin: auto;
+    padding-top: 1em;
+    font-family: 'Anton', Impact, 'Arial Black', 'Arial Rounded MT Bold', sans-serif;
+    color: #1b1b1c;
+    font-size: 4em;
+    letter-spacing: 3px;
+    line-height: 1;
+
+    .t {
+        font-size: 4em;
+    }
+    .a {
+        padding-left: 9px;
+    }
+}
+
+article {
+    font-family: 'Nunito Sans';
+    font-weight: 600;
+    max-width: 600px;
+    margin: auto;
+    font-size: 40px;
+    line-height: 45px;
+    letter-spacing: -1.2px;
+}
+
+@media (max-width: 60em) {
+    nav {
+        display: none;
+    }
+}
+
+@media (max-width: 35em) {
+    article {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    header {
+        width: 80%;
+        font-size: 2.5em;
+    }
+}
+
+.foot {
+    margin-top: 1em;
+    margin-bottom: 6rem;
+}

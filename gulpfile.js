@@ -2,51 +2,67 @@ const gulp = require('gulp')
 const fiber = require('fibers')
 const pug = require('gulp-pug')
 const sass = require('gulp-sass')
-const replace = require('gulp-replace')
-const inlineCss = require('gulp-inline-css')
-const rename = require('gulp-rename')
+const cssnano = require('gulp-cssnano')
+const htmlMinifier = require('gulp-html-minifier')
+const imagemin = require('gulp-imagemin')
+const del = require('del')
 
 const browserSync = require('browser-sync').create()
 
-// browserSync base directory
-// this will be the base directory of files for web preview
-// since we are building `index.pug` templates (located in src/emails) to `dist` folder.
-const baseDir = "./out"
+gulp.task('views', () => {
+    return gulp.src('src/pages/*.pug')
+        .pipe(pug({}))
+        .pipe(gulp.dest('out/'));
+});
 
-// compile sass to css
-gulp.task('compileSass', () => gulp
-    // import all email .scss files from src/scss folder
-    // ** means any sub or deep-sub files or foders
-    .src('./src/sass/**/*.scss')
-    // on error, do not break the process
-    .pipe(sass({ outputStyle: 'compressed', fiber }).on('error', sass.logError))
-    // output to `src/css` folder
-    .pipe(gulp.dest('./src/css')))
+gulp.task('html', () => {
+    return gulp.src('src/pages/*.pug')
+        .pipe(pug({}))
+        .pipe(htmlMinifier({
+            removeComments: true,
+            collapseWhitespace: true,
+            removeTagWhitespace: true
+        }))
+        .pipe(gulp.dest('out/'))
+});
 
-// build complete HTML email template
-// compile sass (compileSass task) before running build
-gulp.task('build', ['compileSass'], () => gulp
-        .src('src/pages/**/*.pug')
-        // replace `.scss` file paths from template with compiled file paths
-        .pipe(replace(new RegExp('\/sass\/(.+)\.scss', 'ig'), '/css/$1.css'))
-        // compile using Pug
-        .pipe(pug())
-        // inline CSS
-        .pipe(inlineCss())
-        // do not generate sub-folders inside dist folder
-        .pipe(rename({ dirname: '' }))
-        // put compiled HTML email templates inside dist folder
-        .pipe(gulp.dest('out')))
+gulp.task('images', () =>
+	gulp.src('src/img/*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('out/img/'))
+);
 
-// browserSync task to launch preview server
-gulp.task('browserSync', () => {
-    return browserSync.init({
-        reloadDelay: 2000,
-        server: { baseDir: baseDir }
-    })
+gulp.task('less', () => {
+    return gulp.src('src/less/*.less')
+        .pipe(less())
+        .pipe(gulp.dest('dist/css/'))
+});
+
+gulp.task('copy', () => {
+    return gulp.src('src/dist/**/*')
+        .pipe(gulp.dest('dist/'))
 })
+
+gulp.task('css', () => {
+    return gulp.src('src/sass/*.scss')
+        .pipe(sass({ fiber })).on('error', sass.logError)
+        .pipe(cssnano())
+        .pipe(gulp.dest('out/css'))
+})
+
+gulp.task('clean', (cb) => {
+    return del.sync('dist',cb)
+});
 
 // task to reload browserSync
 gulp.task('reloadBrowserSync', () => browserSync.reload())
-gulp.task('watch', ['build', 'browserSync'], () => gulp
-    .watch(['src/**/*', '!src/**/*.css'], ['build', 'reloadBrowserSync']))
+gulp.task('browserSync', () => {
+    return browserSync.init({
+        reloadDelay: 2000,
+        server: { baseDir: './out' }
+    })
+})
+gulp.task('build', ['views', 'css', 'images', 'copy'])
+gulp.task('watch', ['build', 'browserSync'], () => gulp.watch('src/**/*', ['build', ['build', 'reloadBrowserSync']]))
+gulp.task('cleanandbuild', ['clean', 'build'])
+gulp.task('default', ['cleanandbuild'])
