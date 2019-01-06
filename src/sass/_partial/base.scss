@@ -17,19 +17,27 @@ html, body {
         margin: 1em 0;
         justify-content: space-between;
     }
-    .\31 -col { flex-basis: 5%;  }
-    .\32 -col { flex-basis: 15%; }
-    .\33 -col { flex-basis: 22%; }
-    .\34 -col { flex-basis: 30%; }
-    .\35 -col { flex-basis: 40%; }
+    .\31 -col { flex-basis: 5% ; min-width: 28px; }
+    .\32 -col { flex-basis: 15%; min-width: 84px; }
+    .\33 -col { flex-basis: 22%; min-width: 123.2px; }
+    .\34 -col { flex-basis: 30%; min-width: 168px; }
+    .\35 -col { flex-basis: 40%; min-width: 224px; }
     .w100 { width: 100%; }
+}
+
+@font-face {
+    font-family: 'Inter UI';
+    font-style:  normal;
+    font-weight: 400;
+    src: url("/fonts/InterUI-3.2/Inter-UI-Regular.woff2") format("woff2"),
+         url("/fonts/InterUI-3.2/Inter-UI-Regular.woff") format("woff");
 }
 
 .x {
     max-width: 60em;
     padding: 1em;
     margin: auto;
-    font: 1em/1.6 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    font: 1em/1.6 'Inter UI',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
 }
 
 p { padding: .5em 0; }

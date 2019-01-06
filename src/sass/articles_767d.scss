@@ -1,0 +1,26 @@
+@import "_partial/base.scss";
+
+body {
+    color:#3c4042;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 3.5em;
+    line-height: 1;
+}
+
+.d {
+    display: inline-block;
+    width: 6em;
+    padding-bottom: .3em;
+}
+
+.diff-month {
+    padding-top: 1em;
+}
+
+.center {
+    margin: auto;
+    max-width: 600px;
+}

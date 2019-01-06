@@ -2,50 +2,26 @@ doctype html
 html(lang="en")
     head
         meta(charset="utf-8")
-        title 767D
+        title zypeh's site
         link(rel="stylesheet" type="text/css" href="css/index_767d.css")
-    body
-        header 767D
 
-    main.x
-        h1 An Extremely Opinionated Site
-        h2 767D is an unicode codepoint for the chinese character '白'.
-        article.row.tiny
-            .4-col
-                p Hi! My name is Zhengyan Peh and I'm a multi-disciplinary designer and full stack developer from Kuala Lumpur, Malaysia.
-                p From web development side; I'm comfortable with React, Node.js, PostgreSQL. Some of my side projects could be seen on Github.
-            .4-col
-                p In the past, I'm a system hacker too. I've made a debugger and firmware to control the AM transmitter. I am learning Rust and Haskell recently.
-                p Right now, I'm working closely with a financial technology company based in Kuala Lumpur — Working as an asscociated Full Stack developer.
-            .4-col
-                p If you've read this far, let's connect. Say hi on Twitter, Instagram, or send a message to zypeh.geek@gmail.com.
-    nav.x
-        .b
-            a(href="/neu-blog/about") About
-            a(href="#") Posts (Currently working in progress.)
-    footer
-        .f
-            section.row.p
-                .8-col
+    body
+        main.x
+            article
+                .w100#about-me
+                    h1 Zhengyan Peh (zypeh)
+                    br
+                    img(src="/img/me.jpg" alt="")
+                    p I'm an engineer at Revenue Monster, a fintech service vendor company where I help design, build, and run our services and maintain our internal tooling.
+                    p I focus on interactive media arts, software systems, and culture.
+                    p I believe in writing proofable codes and compile in a sane method, to performant executable is the bright future of programming.
+
+                .w100#more
                     p
-                        strong Contacts
-                    ul._
-                        li Email: zypeh.geek@gmail.com
-                        li github: #[a(href="https://github.com/zypeh") zypeh]
-                        li linkedin: #[a(href="https://www.linkedin.com/in/zheng-yan-peh-947a7a117/") Zhengyan Peh]
-                .4-col
-                    .l
-                        p
-                            strong Social
-                        ul._
-                            li tt: #[a(href="https://twitter.com/ZhengyanPeh") @ZhengyanPeh]
-                            li ig: #[a(href="https://instagram.com/zypeh") zypeh]
-                            li fb: #[a(href="https://facebook.com/zypeh") zypeh]
-            details
-                summary
-                    span
-                        img.small(src="img/smug.png" alt="*smug face*")
-                section
-                    img.a(src="img/zypeh.jpg" alt="zypeh face")
-                    p * Full portfolio/resume available upon request.
-                    p * Call me maybe. Here is my telegram: #[a(href="https://t.me/zypeh") t.me/zypeh]
+                        |© 2019
+                        |#[br]
+                        |#[a(href="mailto:zypeh.geek@gmail.com") zypeh.geek@gmail.com]
+                    p
+                        |#[a(href="https://twitter.com/ZhengyanPeh") Twitter] &middot;
+                        |#[a(href="https://www.instagram.com/zypeh") Instagram] &middot;
+                        |#[a(href="https://t.me/zypeh") Telegram]

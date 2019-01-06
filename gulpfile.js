@@ -32,37 +32,41 @@ gulp.task('images', () =>
 		.pipe(gulp.dest('out/img/'))
 );
 
-gulp.task('less', () => {
-    return gulp.src('src/less/*.less')
+gulp.task('fonts', () =>
+	gulp.src('src/fonts/**/*')
+		.pipe(gulp.dest('out/fonts/'))
+);
+
+gulp.task('less', () =>
+    gulp.src('src/less/*.less')
         .pipe(less())
         .pipe(gulp.dest('dist/css/'))
-});
+);
 
-gulp.task('copy', () => {
-    return gulp.src('src/dist/**/*')
+gulp.task('copy', () =>
+    gulp.src('src/dist/**/*')
         .pipe(gulp.dest('dist/'))
-})
+)
 
-gulp.task('css', () => {
-    return gulp.src('src/sass/*.scss')
+gulp.task('css', () =>
+    gulp.src('src/sass/*.scss')
         .pipe(sass({ fiber })).on('error', sass.logError)
         .pipe(cssnano())
         .pipe(gulp.dest('out/css'))
-})
+)
 
-gulp.task('clean', (cb) => {
-    return del.sync('dist',cb)
-});
+gulp.task('clean', (cb) => del.sync('dist',cb))
 
 // task to reload browserSync
 gulp.task('reloadBrowserSync', () => browserSync.reload())
-gulp.task('browserSync', () => {
-    return browserSync.init({
+gulp.task('browserSync', () =>
+    browserSync.init({
         reloadDelay: 2000,
         server: { baseDir: './out' }
     })
-})
-gulp.task('build', ['views', 'css', 'images', 'copy'])
+)
+
+gulp.task('build', ['views', 'css', 'images', 'fonts', 'copy'])
 gulp.task('watch', ['build', 'browserSync'], () => gulp.watch('src/**/*', ['build', ['build', 'reloadBrowserSync']]))
 gulp.task('cleanandbuild', ['clean', 'build'])
 gulp.task('default', ['cleanandbuild'])
